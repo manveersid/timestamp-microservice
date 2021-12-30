@@ -18,12 +18,34 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+//requests with no data
+app.get('/api/', (req, res)=>{
+  res.send('sending current time');
+});
+
+//handling real reqeust
+app.get('/api/:input', (req, res)=> {
+  let inputDate = req.params.input;
+  if(!(inputDate.includes(',') || inputDate.includes('-'))) {
+    inputDate = parseInt(inputDate);
+  };
+  
+  let response = {
+    'unix': '',
+    'utc': ''
+  };
+  
+  if(isNaN(inputDate)) {
+    response.unix = 
+  } else {
+    
+  }
+})
 
 
 // listen for requests :)

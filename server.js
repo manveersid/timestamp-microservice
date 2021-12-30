@@ -41,10 +41,17 @@ app.get('/api/:input', (req, res)=> {
   };
   
   if(isNaN(inputDate)) {
-    response.unix = 
+    response.unix = Date.parse(inputDate);
+    response.utc = (new Date(inputDate)).toUTCString();
   } else {
-    
+    response.unix = inputDate;
+    response.utc = (new Date(inputDate)).toUTCString();
   }
+  
+  if(isNaN(response.unix)) {
+    res.se
+  }
+  res.json(response);
 })
 
 

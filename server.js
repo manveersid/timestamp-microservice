@@ -25,7 +25,11 @@ app.get("/api/hello", function (req, res) {
 
 //requests with no data
 app.get('/api/', (req, res)=>{
-  res.send('sending current time');
+  let currentDate = new Date(Date.now());
+  res.json({
+    'unix': Date.parse(currentDate),
+    'utc': currentDate.toUTCString()
+  });
 });
 
 //handling real reqeust
@@ -49,9 +53,10 @@ app.get('/api/:input', (req, res)=> {
   }
   
   if(isNaN(response.unix)) {
-    res.se
+    res.json({'error': 'Invalid Date'});
+  } else {
+    res.json(response);
   }
-  res.json(response);
 })
 
 
